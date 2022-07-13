@@ -7,7 +7,7 @@ jobs:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - name: Python Script
-        working-directory: "C:\Users\riedelna\OneDrive - Sykes Enterprises, Incorporated\Desktop\CIScripts"
+        run: cd "C:\Users\riedelna\OneDrive - Sykes Enterprises, Incorporated\Desktop\CIScripts"
         run: py hello.py
       - name: Check out repository code
         uses: actions/checkout@v3
