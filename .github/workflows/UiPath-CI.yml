@@ -3,23 +3,22 @@ env:
   LOCAL_SCRIPT_DIR: C:\Users\riedelna\OneDrive - Sykes Enterprises, Incorporated\Desktop\CIScripts
 on: [push]
 jobs:
-  Example:
+  Build:
     runs-on: self-hosted
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - name: Python Script
-        run: py "$env:LOCAL_SCRIPT_DIR\hello.py"
-      - name: Check out repository code
+      - name: Clone repo
         uses: actions/checkout@v3
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
-  Example2:
+      - name: Build
+        run: py "$env:LOCAL_SCRIPT_DIR\Build.py -i ${{ github.workspace }} -o $env:LOCAL_SCRIPT_DIR\temp\package"
+  Deploy To Dev:
     runs-on: self-hosted
-    needs: Example
+    needs: Build
     steps:
-      - run: echo "hello example2"
+      - name: Deploying
+        run: echo "Deployed to Dev"
+  Deploy To Test:
+    runs-on: self-hosted
+    needs: Build
+    steps:
+      - name: Deploying
+        run: echo "Deployed to Test"
