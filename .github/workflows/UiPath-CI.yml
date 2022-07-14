@@ -9,7 +9,7 @@ jobs:
       - name: Clone repo
         uses: actions/checkout@v3
       - name: Build
-        run: py "$env:LOCAL_SCRIPT_DIR\Build.py -i ${{ github.workspace }} -o $env:LOCAL_SCRIPT_DIR\temp\package"
+        run: py "$env:LOCAL_SCRIPT_DIR\Build.py" -i ${{ github.workspace }} -o $env:LOCAL_SCRIPT_DIR\temp\package
   DevDeploy:
     runs-on: self-hosted
     needs: Build
