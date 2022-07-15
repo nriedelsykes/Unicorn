@@ -30,7 +30,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           path: temp\artifact
-        run: echo "Deployed to Dev"
   TestDeploy:
     runs-on: self-hosted
     needs: Build
