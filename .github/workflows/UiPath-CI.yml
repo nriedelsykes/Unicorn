@@ -19,7 +19,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ${{ steps.packBuild.outputs.content }}
-          path: ${{ env.LOCAL_SCRIPT_DIR }}\temp\package\Unicorn.Quick.Tutorial.1.0.1657823848.nupkg
+          path: ${{ env.LOCAL_SCRIPT_DIR }}\temp\package\${{ steps.packBuild.outputs.content }}.nupkg
           retention-days: 1             
   DevDeploy:
     runs-on: self-hosted
