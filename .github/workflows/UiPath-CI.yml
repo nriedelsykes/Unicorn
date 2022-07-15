@@ -26,10 +26,10 @@ jobs:
     needs: Build
     steps:
       - name: Download package artifact
-        working-directory: ${{ env.LOCAL_SCRIPT_DIR }}
+        uses: actions/checkout@v2
         uses: actions/download-artifact@v3
-        with:
-          path: temp\artifact
+          with:
+          path: ${{ env.LOCAL_SCRIPT_DIR }}\temp\artifact
   TestDeploy:
     runs-on: self-hosted
     needs: Build
