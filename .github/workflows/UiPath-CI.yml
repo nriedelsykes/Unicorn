@@ -11,6 +11,12 @@ jobs:
       - name: Build
         working-directory: ${{ env.LOCAL_SCRIPT_DIR }}
         run: py "Build.py" -i ${{ github.workspace }} -o temp\package
+      - name: Upload package artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: NuGet-Package
+          path: ${{ env.LOCAL_SCRIPT_DIR }}\temp\package\Unicorn.Quick.Tutorial.1.0.1657823848.nupkg
+          retention-days: 1
   DevDeploy:
     runs-on: self-hosted
     needs: Build
