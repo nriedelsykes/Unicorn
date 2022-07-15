@@ -32,6 +32,12 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           path: ${{ env.LOCAL_SCRIPT_DIR }}\temp\artifact
+      - name: Deploying to Development Environment
+        working-directory: ${{ env.LOCAL_SCRIPT_DIR }}
+        run: py DevDeploy.py
+      - name: Clean-up
+        working-directory: ${{ env.LOCAL_SCRIPT_DIR }}
+        run: Remove-Item .\temp\artifact\*.* -Recurse -Force -Confirm:$false 
   TestDeploy:
     runs-on: self-hosted
     needs: Build
