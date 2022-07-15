@@ -13,9 +13,12 @@ jobs:
         run: | 
           $packName=py Build.py -i ${{ github.workspace }} -o temp\package
           echo "$packName built..."
+          echo "::set-output name=content::$packName"
+        id: packBuild
+      - name: Upload package artifact  
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ packName }}
+          name: ${{ steps.packBuild.outputs.content }}
           path: ${{ env.LOCAL_SCRIPT_DIR }}\temp\package\Unicorn.Quick.Tutorial.1.0.1657823848.nupkg
           retention-days: 1             
   DevDeploy:
