@@ -28,8 +28,8 @@ jobs:
       - name: Download package artifact
         uses: actions/checkout@v2
         uses: actions/download-artifact@v3
-          with:
-            path: ${{ env.LOCAL_SCRIPT_DIR }}\temp\artifact
+        with:
+          path: ${{ env.LOCAL_SCRIPT_DIR }}\temp\artifact
   TestDeploy:
     runs-on: self-hosted
     needs: Build
