@@ -20,7 +20,9 @@ jobs:
         with:
           name: ${{ steps.packBuild.outputs.content }}
           path: ${{ env.LOCAL_SCRIPT_DIR }}\temp\package\${{ steps.packBuild.outputs.content }}.nupkg
-          retention-days: 1             
+          retention-days: 1    
+      - name: Clean-up
+        run: Remove-Item .\temp\package\*.* -Recurse -Force -Confirm:$false         
   DevDeploy:
     runs-on: self-hosted
     needs: Build
