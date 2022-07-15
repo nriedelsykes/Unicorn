@@ -11,13 +11,13 @@ jobs:
       - name: Build
         working-directory: ${{ env.LOCAL_SCRIPT_DIR }}
         run: | 
-          $output=py Build.py -i ${{ github.workspace }} -o temp\package
-          $outputArr= ($output -split '\n') 
-          $packInfo = $outputArr[$outputArr.Length - 1] 
-          echo $packInfo
-        id: package
-      - name: Print-Output
-        run: echo ${{ steps.package.outputs.packInfo }}              
+          $packName=py Build.py -i ${{ github.workspace }} -o temp\package
+          echo "$packName built..."
+          uses: actions/upload-artifact@v3
+        with:
+          name: ${{ packName }}
+          path: ${{ env.LOCAL_SCRIPT_DIR }}\temp\package\Unicorn.Quick.Tutorial.1.0.1657823848.nupkg
+          retention-days: 1             
   DevDeploy:
     runs-on: self-hosted
     needs: Build
