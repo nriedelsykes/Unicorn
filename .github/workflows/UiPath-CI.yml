@@ -25,7 +25,11 @@ jobs:
     runs-on: self-hosted
     needs: Build
     steps:
-      - name: Deploying
+      - name: Download package artifact
+        working-directory: ${{ env.LOCAL_SCRIPT_DIR }}
+        uses: actions/download-artifact@v3
+        with:
+          path: temp\artifact
         run: echo "Deployed to Dev"
   TestDeploy:
     runs-on: self-hosted
