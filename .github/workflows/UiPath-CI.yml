@@ -12,8 +12,8 @@ jobs:
         working-directory: ${{ env.LOCAL_SCRIPT_DIR }}
         run: 
           $output=py Build.py -i ${{ github.workspace }} -o temp\package |
-          $outputArr= ($output -split '\n')
-          $packInfo = $outputArr[$outputArr.Length - 1]
+          $outputArr= ($output -split '\n') |
+          $packInfo = $outputArr[$outputArr.Length - 1] |
           echo $packInfo
         id: package
       - name: Print-Output
