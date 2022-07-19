@@ -47,6 +47,7 @@ jobs:
         with:
           path: ${{ env.LOCAL_SCRIPT_DIR }}\temp\artifact
       - name: Deploying to Test Environment
+        working-directory: ${{ env.LOCAL_SCRIPT_DIR }}
         run: py TestDeploy.py -r ${{ github.repository }}
       - name: Clean-up
         working-directory: ${{ env.LOCAL_SCRIPT_DIR }}
